@@ -3,5 +3,5 @@ terraform {
 }
 
 locals {
-  content = var.condition ? "" : parseint("ERROR: ${var.error_message}", 2)
+  content = var.condition ? "" : abs(true ? null : "ERROR: ${var.error_message}")
 }
