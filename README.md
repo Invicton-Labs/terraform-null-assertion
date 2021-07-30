@@ -1,7 +1,7 @@
 # Terraform Assertion
 A simple module that asserts that a condition is true. The assertion is checked during planning, unless the condition depends on a value that will only be known during apply.
 
-The module forces Terraform to fail if the condition is false by attempting to call a non-existant external command. It uses the error message in the command name so that the resulting Terraform failure message is descriptive (although it is slightly confusing in the format; see the example below).
+The module forces Terraform to fail if the condition is false by providing an invalid input to a Terraform function. It uses the error message in the invalid input so that the resulting Terraform failure message is descriptive (although it is slightly confusing in the format; see the example below).
 
 ## Usage
 ```
@@ -24,5 +24,5 @@ No changes. Your infrastructure matches the configuration.
 
 Output on Windows machines:
 ```
-Error: can't find external program "ERROR: This Terraform configuration can only be run on Unix-based machines."
+Invalid value for "number" parameter: cannot parse "ERROR: This Terraform configuration can only be run on Unix-based machines." as a base 2 integer.
 ```
