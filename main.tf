@@ -3,5 +3,5 @@ terraform {
 }
 
 locals {
-  content = var.condition ? "" : abs(true ? null : "ERROR: ${var.error_message}")
+  content = var.condition ? "" : SEE_ABOVE_ERROR_MESSAGE(true ? null : "ERROR: ${var.error_message}")
 }

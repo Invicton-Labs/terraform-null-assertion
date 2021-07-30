@@ -24,5 +24,9 @@ No changes. Your infrastructure matches the configuration.
 
 Output on Windows machines:
 ```
-Invalid value for "number" parameter: cannot parse "ERROR: This Terraform configuration can only be run on Unix-based machines." as a base 2 integer.
+// This is where you see the real error message
+var.error_message is "This Terraform configuration can only be run on Unix-based machines."
+
+// Ignore this part
+There is no function named "SEE_ABOVE_ERROR_MESSAGE".
 ```
