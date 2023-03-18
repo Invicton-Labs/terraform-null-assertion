@@ -27,23 +27,23 @@ jobs:
     container: ${{ matrix.container }}
     steps:
       - name: Initialize - Pass
-        id: init
+        id: init-pass
         uses: Invicton-Labs/terraform-module-testing/initialize@dev
         with:
           testing_path: tests/pass
       - name: Run Tests - Pass
-        id: tests
+        id: tests-pass
         uses: Invicton-Labs/terraform-module-testing/apply-destroy@dev
         with:
           testing_path: tests/pass
           
       - name: Initialize - Fail
-        id: init
+        id: init-fail
         uses: Invicton-Labs/terraform-module-testing/initialize@dev
         with:
           testing_path: tests/fail
       - name: Run Tests - Fail
-        id: tests
+        id: tests-fail
         uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
         with:
           testing_path: tests/fail
