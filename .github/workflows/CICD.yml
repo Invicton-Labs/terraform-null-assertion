@@ -6,6 +6,12 @@ jobs:
   Demo:
     runs-on: ubuntu-latest
     steps:
+      - name: Initialize Terraform
+        id: matrix
+        uses: Invicton-Labs/terraform-module-testing/initialize@dev
+        with:
+          tf_path: tests/outputs
+
       - name: Generate Matrix
         id: matrix
         uses: Invicton-Labs/terraform-module-testing/apply-destroy@dev
