@@ -15,11 +15,11 @@ output "key1" {
   value = var.key1
 }
 output "key2" {
-  value = var.key1
+  value = var.key2
 }
 output "key3" {
-  value = var.key1
+  value = var.key3
 }
 output "key4" {
-  value = var.key1
+  value = var.key4
 }
