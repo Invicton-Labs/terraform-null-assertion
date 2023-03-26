@@ -12,10 +12,10 @@ jobs:
         with:
           tf_path: tests/outputs
           tf_vars: |
-            key1=value1
-            key2=value2
-            key3=va"l"ue3
-            key4=val'u'e4
+            key1=444
+            key2=va"l"u'e'2
+            key3=["abc", "def"]
+            key4={"subkey1": "subval1", "subkey2": "subval2"}
 
 
   # Matrix:
