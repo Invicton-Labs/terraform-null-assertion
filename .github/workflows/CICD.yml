@@ -19,7 +19,7 @@ jobs:
           tf_path: tests/outputs
           tf_args: |
             -var="key1=444"
-            -var="key2=va"l"u'e'2"
+            -var="key2=va\"l\"u'e'2"
             -var="key3=[\"abc\", \"def\"]"
             -var="key4={\"subkey1\": \"subval1\", \"subkey2\": \"subval2\"}"
 
