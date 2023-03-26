@@ -13,6 +13,8 @@ jobs:
           tf_vars: |
             key1=value1
             key2=value2
+            key3=va"l"ue3
+            key4=val'u'e4
 
 
   # Matrix:
