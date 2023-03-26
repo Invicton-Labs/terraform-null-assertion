@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize Terraform
-        id: matrix
+        id: initialize
         uses: Invicton-Labs/terraform-module-testing/initialize@dev
         with:
           tf_path: tests/outputs
