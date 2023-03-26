@@ -10,6 +10,7 @@ jobs:
         id: matrix
         uses: Invicton-Labs/terraform-module-testing/apply-destroy@dev
         with:
+          tf_path: tests/outputs
           tf_vars: |
             key1=value1
             key2=value2
