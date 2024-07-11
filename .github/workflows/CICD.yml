@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Generate Matrix
         id: matrix
-        uses: Invicton-Labs/terraform-module-testing/matrix@a4a51fb1fa70a00b9f468ff48540cb44e38c1c74
+        uses: Invicton-Labs/terraform-module-testing/matrix@feat/additional-os
         with:
           minimum_tf_version: '1.9.0'
 
