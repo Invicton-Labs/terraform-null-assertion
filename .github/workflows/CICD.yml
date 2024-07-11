@@ -30,23 +30,23 @@ jobs:
     steps:
       - name: Initialize - Pass
         id: init-pass
-        uses: Invicton-Labs/terraform-module-testing/initialize@v0.1.0
+        uses: Invicton-Labs/terraform-module-testing/initialize@feat/additional-os
         with:
           tf_path: tests/pass
       - name: Run Tests - Pass
         id: tests-pass
-        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.1.0
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@feat/additional-os
         with:
           tf_path: tests/pass
           
       - name: Initialize - Fail
         id: init-fail
-        uses: Invicton-Labs/terraform-module-testing/initialize@v0.1.0
+        uses: Invicton-Labs/terraform-module-testing/initialize@feat/additional-os
         with:
           tf_path: tests/fail
       - name: Run Tests - Fail
         id: tests-fail
-        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.1.0
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@feat/additional-os
         with:
           tf_path: tests/fail
           
