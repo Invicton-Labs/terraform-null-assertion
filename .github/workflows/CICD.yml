@@ -13,7 +13,6 @@ jobs:
         with:
           minimum_tf_version: '1.9.0'
           additional_runners: 'macos-13, windows-2019'
-          additional_images: 'amazonlinux:2'
 
       - name: Output Matrix
         run: |
