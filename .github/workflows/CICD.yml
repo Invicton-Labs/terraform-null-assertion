@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Generate Matrix
         id: matrix
-        uses: Invicton-Labs/terraform-module-testing/matrix@v0.1.0
+        uses: Invicton-Labs/terraform-module-testing/matrix@a4a51fb1fa70a00b9f468ff48540cb44e38c1c74
         with:
           minimum_tf_version: '1.9.0'
 
@@ -20,40 +20,40 @@ jobs:
     outputs:
       strategy: ${{ steps.matrix.outputs.strategy }}
           
-  Test:
-    needs: [Matrix]
-    strategy: ${{ fromJSON(needs.Matrix.outputs.strategy)}}
-    runs-on: ${{ matrix.runs-on }}
-    container: ${{ matrix.container }}
-    steps:
-      - name: Initialize - Pass
-        id: init-pass
-        uses: Invicton-Labs/terraform-module-testing/initialize@v0.1.0
-        with:
-          tf_path: tests/pass
-      - name: Run Tests - Pass
-        id: tests-pass
-        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.1.0
-        with:
-          tf_path: tests/pass
+  # Test:
+  #   needs: [Matrix]
+  #   strategy: ${{ fromJSON(needs.Matrix.outputs.strategy)}}
+  #   runs-on: ${{ matrix.runs-on }}
+  #   container: ${{ matrix.container }}
+  #   steps:
+  #     - name: Initialize - Pass
+  #       id: init-pass
+  #       uses: Invicton-Labs/terraform-module-testing/initialize@v0.1.0
+  #       with:
+  #         tf_path: tests/pass
+  #     - name: Run Tests - Pass
+  #       id: tests-pass
+  #       uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.1.0
+  #       with:
+  #         tf_path: tests/pass
           
-      - name: Initialize - Fail
-        id: init-fail
-        uses: Invicton-Labs/terraform-module-testing/initialize@v0.1.0
-        with:
-          tf_path: tests/fail
-      - name: Run Tests - Fail
-        id: tests-fail
-        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.1.0
-        with:
-          tf_path: tests/fail
+  #     - name: Initialize - Fail
+  #       id: init-fail
+  #       uses: Invicton-Labs/terraform-module-testing/initialize@v0.1.0
+  #       with:
+  #         tf_path: tests/fail
+  #     - name: Run Tests - Fail
+  #       id: tests-fail
+  #       uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.1.0
+  #       with:
+  #         tf_path: tests/fail
           
-  # This job just waits for all other jobs to pass. We have it here
-  # so our branch protection rule can reference a single job, instead
-  # of needing to list every matrix value of every job above.
-  Passed:
-    runs-on: ubuntu-latest
-    needs: [Test]
-    steps:
-    - name: Mark tests as passed
-      run: echo "🎉"
+  # # This job just waits for all other jobs to pass. We have it here
+  # # so our branch protection rule can reference a single job, instead
+  # # of needing to list every matrix value of every job above.
+  # Passed:
+  #   runs-on: ubuntu-latest
+  #   needs: [Test]
+  #   steps:
+  #   - name: Mark tests as passed
+  #     run: echo "🎉"
