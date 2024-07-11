@@ -1,9 +1,18 @@
-variable "condition" {
-  description = "The condition to ensure is `true`."
-  type        = bool
-}
-
 variable "error_message" {
   description = "The error message to display if the condition evaluates to `false`."
   type        = string
+  nullable    = false
+}
+
+variable "condition" {
+  description = "The condition to ensure is `true`."
+  type        = bool
+  validation {
+    // We have to use var.error_message != null to force the evaluation to wait
+    // until var.error_message is known. Otherwise, it can fail during the validation
+    // phase but won't output the proper error message.
+    // https://github.com/hashicorp/terraform/issues/35397
+    condition     = var.error_message != null && var.condition == true
+    error_message = var.error_message
+  }
 }
