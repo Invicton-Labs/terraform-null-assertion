@@ -12,6 +12,8 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/matrix@v0.2.0
         with:
           minimum_tf_version: '1.7.0'
+          additional_runners: 'macos-13, windows-2019'
+          additional_images: 'amazonlinux:2'
 
       - name: Output Matrix
         run: |
