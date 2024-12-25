@@ -49,16 +49,27 @@ jobs:
         with:
           tf_path: tests/pass-output
           
-      - name: Initialize - Pass - Delayed
-        id: init-pass-delayed
+      - name: Initialize - Pass - Condition Delayed
+        id: init-pass-condition-delayed
         uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
         with:
-          tf_path: tests/pass-delayed
-      - name: Run Tests - Pass - Delayed
-        id: tests-pass-delayed
+          tf_path: tests/pass-condition-delayed
+      - name: Run Tests - Pass - Condition Delayed
+        id: tests-pass-condition-delayed
         uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.2.0
         with:
-          tf_path: tests/pass-delayed
+          tf_path: tests/pass-condition-delayed
+          
+      - name: Initialize - Pass - Message Delayed
+        id: init-pass-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
+        with:
+          tf_path: tests/pass-message-delayed
+      - name: Run Tests - Pass - Message Delayed
+        id: tests-pass-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.2.0
+        with:
+          tf_path: tests/pass-message-delayed
           
       - name: Initialize - Fail
         id: init-fail
@@ -82,16 +93,27 @@ jobs:
         with:
           tf_path: tests/fail-output
           
-      - name: Initialize - Fail - Delayed
-        id: init-fail-delayed
+      - name: Initialize - Fail - Condition Delayed
+        id: init-fail-condition-delayed
         uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
         with:
-          tf_path: tests/fail-delayed
-      - name: Run Tests - Fail - Delayed
-        id: tests-fail-delayed
+          tf_path: tests/fail-condition-delayed
+      - name: Run Tests - Fail - Condition Delayed
+        id: tests-fail-condition-delayed
         uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.2.0
         with:
-          tf_path: tests/fail-delayed
+          tf_path: tests/fail-condition-delayed
+          
+      - name: Initialize - Fail - Message Delayed
+        id: init-fail-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
+        with:
+          tf_path: tests/fail-message-delayed
+      - name: Run Tests - Fail - Message Delayed
+        id: tests-fail-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.2.0
+        with:
+          tf_path: tests/fail-message-delayed
           
   # This job just waits for all other jobs to pass. We have it here
   # so our branch protection rule can reference a single job, instead
