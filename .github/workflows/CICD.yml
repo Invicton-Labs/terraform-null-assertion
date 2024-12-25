@@ -48,6 +48,17 @@ jobs:
         with:
           tf_path: tests/pass-output
           
+      - name: Initialize - Pass - Delayed
+        id: init-pass-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
+        with:
+          tf_path: tests/pass-delayed
+      - name: Run Tests - Pass - Delayed
+        id: tests-pass-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.2.0
+        with:
+          tf_path: tests/pass-delayed
+          
       - name: Initialize - Fail
         id: init-fail
         uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
@@ -69,6 +80,17 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.2.0
         with:
           tf_path: tests/fail-output
+          
+      - name: Initialize - Fail - Delayed
+        id: init-fail-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.2.0
+        with:
+          tf_path: tests/fail-delayed
+      - name: Run Tests - Fail - Delayed
+        id: tests-fail-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.2.0
+        with:
+          tf_path: tests/fail-delayed
           
   # This job just waits for all other jobs to pass. We have it here
   # so our branch protection rule can reference a single job, instead
