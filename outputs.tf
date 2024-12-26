@@ -10,5 +10,6 @@ output "condition" {
 
 output "checked" {
   description = "Whether the condition has been checked (used for assertion dependencies)."
-  value       = local.evaluation == true ? true : true //var.condition == true ? true : true
+  value       = var.condition == true ? true : true
+  //value       = local.evaluation == "" ? true : true //var.condition == true ? true : true
 }

@@ -1,6 +1,6 @@
 module "fail" {
   source = "../../"
   // Use a condition that isn't known until the apply step
-  condition     = false
+  condition     = uuid() == ""
   error_message = "sample error: ${uuid()}"
 }
