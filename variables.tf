@@ -16,7 +16,3 @@ variable "condition" {
     error_message = var.error_message
   }
 }
-
-# locals {
-#   evaluation = var.condition ? "" : SEE_ABOVE_ERROR_MESSAGE(true ? null : "ERROR: ${var.error_message}")
-# }
