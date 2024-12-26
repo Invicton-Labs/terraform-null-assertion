@@ -12,7 +12,7 @@ variable "condition" {
     // until var.error_message is known. Otherwise, it can fail during the validation
     // phase but won't output the proper error message.
     // https://github.com/hashicorp/terraform/issues/35397
-    condition     = var.error_message != null && var.condition == true
+    condition     = var.error_message == "" ? var.condition : var.condition
     error_message = var.error_message
   }
 }
