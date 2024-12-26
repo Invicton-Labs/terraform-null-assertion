@@ -141,7 +141,7 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
         with:
           tf_path: tests/fail-condition-message-delayed
-          stderr_contains: sample errorsss
+          stderr_contains: sample error
           
   # This job just waits for all other jobs to pass. We have it here
   # so our branch protection rule can reference a single job, instead
