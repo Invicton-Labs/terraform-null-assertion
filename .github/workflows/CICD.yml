@@ -70,6 +70,18 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-destroy@dev
         with:
           tf_path: tests/pass-message-delayed
+          stderr_contains: Unsuitable value for error message
+          
+      - name: Initialize - Pass - Condition & Message Delayed
+        id: init-pass-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@dev
+        with:
+          tf_path: tests/pass-condition-message-delayed
+      - name: Run Tests - Pass - Condition & Message Delayed
+        id: tests-pass-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@dev
+        with:
+          tf_path: tests/pass-condition-message-delayed
           
       - name: Initialize - Fail
         id: init-fail
@@ -81,6 +93,7 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
         with:
           tf_path: tests/fail
+          stderr_contains: sample error
           
       - name: Initialize - Fail (Output)
         id: init-fail-output
@@ -92,6 +105,7 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
         with:
           tf_path: tests/fail-output
+          stderr_contains: sample error
           
       - name: Initialize - Fail - Condition Delayed
         id: init-fail-condition-delayed
@@ -103,6 +117,7 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
         with:
           tf_path: tests/fail-condition-delayed
+          stderr_contains: sample error
           
       - name: Initialize - Fail - Message Delayed
         id: init-fail-message-delayed
@@ -114,6 +129,19 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
         with:
           tf_path: tests/fail-message-delayed
+          stderr_contains: Unsuitable value for error message
+          
+      - name: Initialize - Fail - Condition & Message Delayed
+        id: init-fail-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@dev
+        with:
+          tf_path: tests/fail-condition-message-delayed
+      - name: Run Tests - Fail - Condition & Message Delayed
+        id: tests-fail-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@dev
+        with:
+          tf_path: tests/fail-condition-message-delayed
+          stderr_contains: sample error
           
   # This job just waits for all other jobs to pass. We have it here
   # so our branch protection rule can reference a single job, instead
