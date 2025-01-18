@@ -82,6 +82,50 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.3.0
         with:
           tf_path: tests/pass-condition-message-delayed
+       
+      - name: Initialize - Pass - Multi
+        id: init-pass-multi
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/pass-multi
+      - name: Run Tests - Pass - Multi
+        id: tests-pass-multi
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.3.0
+        with:
+          tf_path: tests/pass-multi
+       
+      - name: Initialize - Pass - Multi - Condition Delayed
+        id: init-pass-multi-condition-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/pass-multi-condition-delayed
+      - name: Run Tests - Pass - Multi - Condition Delayed
+        id: tests-pass-multi-condition-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.3.0
+        with:
+          tf_path: tests/pass-multi-condition-delayed
+
+      - name: Initialize - Pass - Multi - Message Delayed
+        id: init-pass-multi-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/pass-multi-message-delayed
+      - name: Run Tests - Pass - Multi - Message Delayed
+        id: tests-pass-multi-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.3.0
+        with:
+          tf_path: tests/pass-multi-message-delayed
+          
+      - name: Initialize - Pass - Multi - Condition and Message Delayed
+        id: init-pass-multi-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/pass-multi-condition-message-delayed
+      - name: Run Tests - Pass - Multi - Condition and Message Delayed
+        id: tests-pass-multi-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-destroy@v0.3.0
+        with:
+          tf_path: tests/pass-multi-condition-message-delayed
           
       - name: Initialize - Fail
         id: init-fail
@@ -141,6 +185,42 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.3.0
         with:
           tf_path: tests/fail-condition-message-delayed
+          stderr_contains: sample error
+          
+      - name: Initialize - Fail - Multi - Condition Delayed
+        id: init-fail-multi-condition-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/fail-multi-condition-delayed
+      - name: Run Tests - Fail - Multi - Condition Delayed
+        id: tests-fail-multi-condition-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.3.0
+        with:
+          tf_path: tests/fail-multi-condition-delayed
+          stderr_contains: sample error
+          
+      - name: Initialize - Fail - Multi - Message Delayed
+        id: init-fail-multi-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/fail-multi-message-delayed
+      - name: Run Tests - Fail - Multi - Message Delayed
+        id: tests-fail-multi-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.3.0
+        with:
+          tf_path: tests/fail-multi-message-delayed
+          stderr_contains: sample error
+
+      - name: Initialize - Fail - Multi - Condition and Message Delayed
+        id: init-fail-multi-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/initialize@v0.3.0
+        with:
+          tf_path: tests/fail-multi-condition-message-delayed
+      - name: Run Tests - Fail - Multi - Condition and Message Delayed
+        id: tests-fail-multi-condition-message-delayed
+        uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.3.0
+        with:
+          tf_path: tests/fail-multi-condition-message-delayed
           stderr_contains: sample error
           
   # This job just waits for all other jobs to pass. We have it here
