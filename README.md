@@ -1,7 +1,7 @@
 # Terraform Assertion
-A simple module that asserts that a condition is true. The assertion is checked during planning, unless the condition depends on a value that will only be known during apply.
+A simple module that asserts that one or more conditions are true. The assertion is checked during planning, unless the condition depends on a value that will only be known during apply.
 
-The module forces Terraform to fail if the condition is false by providing an invalid input to a Terraform function. It uses the error message in the invalid input so that the resulting Terraform failure message is descriptive (although it is slightly confusing in the format; see the example below).
+The module forces Terraform to fail if the condition is false by using a Terraform variable with a validation condition, with the desired error message as the variable validation error message.
 
 ## Usage
 ```
@@ -24,11 +24,30 @@ No changes. Your infrastructure matches the configuration.
 
 Output on Windows machines:
 ```
-// This is where you see the real error message
-var.error_message is "This Terraform configuration can only be run on Unix-based machines."
+ASSERTION FAILURE: This Terraform configuration can only be run on Unix-based machines.
 
-// Ignore this part
-There is no function named "SEE_ABOVE_ERROR_MESSAGE".
+This was checked by the validation rule at ..\..\variables.tf:13,3-13.
+```
+
+### Multiple Assertions
+
+If you want to make multiple assertions and don't want to use many instances of this module, or if you want to make a dynamic number of assertions, you can use the `assertions` input variable instead.
+
+```
+module "assertion_of_validity" {
+  source  = "Invicton-Labs/assertion/null"
+
+  assertions = [
+    {
+      condition = dirname("/") == "/"
+      error_message = "This Terraform configuration can only be run on Unix-based machines."
+    },
+    {
+      condition = 1 + 1 == 2
+      error_message = "This machine can't do math properly."
+    }
+  ]
+}
 ```
 
 ## Plan, Apply, and Unknown Values
@@ -47,7 +66,7 @@ The `condition` _will_ still be checked during the apply step, and the `error_me
 
 When the `error_message` variable doesn't have a known value during the plan step, the behaviour will vary depending on whether the `condition` value is known during the plan step.
 
-If `condition` is not known during planning, then the `error_message` will not be evaluated/used until the apply step, and only if `condition` evaluates to `false`.
+If `condition` _is not_ known during planning, then the `error_message` will not be evaluated/used until the apply step, and only if `condition` evaluates to `false`.
 
 If the `condition` _is_ known during planning and it evaluates to `false`, then the Terraform operation will fail during the plan step and the output error message will explain that the `error_message` variable value is invalid (not known).
 
