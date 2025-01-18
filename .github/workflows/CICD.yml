@@ -209,7 +209,7 @@ jobs:
         uses: Invicton-Labs/terraform-module-testing/apply-failure@v0.3.0
         with:
           tf_path: tests/fail-multi-message-delayed
-          stderr_contains: sample error
+          stderr_contains: Unsuitable value for error message
 
       - name: Initialize - Fail - Multi - Condition and Message Delayed
         id: init-fail-multi-condition-message-delayed
