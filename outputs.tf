@@ -3,12 +3,12 @@
 //==================================================
 output "error_message" {
   description = "The value of the `error_message` input variable."
-  value       = var.error_message
+  value       = nonsensitive(var.error_message)
 }
 
 output "condition" {
   description = "The value of the `condition` input variable."
-  value       = var.condition
+  value       = nonsensitive(var.condition)
 }
 
 output "assertions" {
@@ -21,5 +21,5 @@ output "assertions" {
 //==================================================
 output "checked" {
   description = "Whether the condition has been checked (used for assertion dependencies)."
-  value       = var.condition == true ? true : true
+  value       = nonsensitive(nonsensitive(var.condition) == true ? true : true)
 }
