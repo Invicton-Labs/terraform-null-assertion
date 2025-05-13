@@ -21,5 +21,5 @@ output "assertions" {
 //==================================================
 output "checked" {
   description = "Whether the condition has been checked (used for assertion dependencies)."
-  value       = var.condition == true ? true : true
+  value       = nonsensitive(nonsensitive(var.condition) == true ? true : true)
 }
