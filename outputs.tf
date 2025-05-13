@@ -3,12 +3,12 @@
 //==================================================
 output "error_message" {
   description = "The value of the `error_message` input variable."
-  value       = nonsensitive(var.error_message)
+  value       = var.error_message
 }
 
 output "condition" {
   description = "The value of the `condition` input variable."
-  value       = nonsensitive(var.condition)
+  value       = var.condition
 }
 
 output "assertions" {
